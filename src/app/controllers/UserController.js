@@ -43,11 +43,15 @@ class UserController {
         .when('oldPassword', (oldPassword, field) =>
           oldPassword ? field.required() : field
         ),
+      confirmPassword: Yup.string().when('password', (password, field) =>
+        password ? field.required().oneOf([Yup.ref('password')]) : field
+      ),
     });
 
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails' });
     }
+
     const { email, oldPassword } = req.body;
 
     const user = await User.findByPk(req.userId);
@@ -64,9 +68,14 @@ class UserController {
       return res.status(401).json({ error: 'Password does not macth' });
     }
 
-    const userup = await user.update(req.body);
+    const { id, name, provider } = await user.update(req.body);
 
-    return res.json(userup);
+    return res.json({
+      id,
+      name,
+      email,
+      provider,
+    });
   }
 }
 
