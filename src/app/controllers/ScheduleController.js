@@ -21,6 +21,7 @@ class ScheduleController {
      * pegar hora ini e hora fim do dia e exibir todos os appointments
      * ini 2020-02-06 00:00:00
      * fim 2020-02-06 23:59:59
+     *
      */
     const { date } = req.query;
     const parseDate = parseISO(date);
