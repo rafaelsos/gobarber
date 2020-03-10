@@ -6,9 +6,6 @@ import Appointment from '../models/Appointment';
 
 class ScheduleController {
   async index(req, res) {
-    /**
-     * check if user is provider
-     */
     const checkUserProvider = User.findOne({
       where: { id: req.userId, provider: true },
     });
@@ -17,12 +14,6 @@ class ScheduleController {
       return res.status(401).json({ error: 'User is not provider' });
     }
 
-    /**
-     * pegar hora ini e hora fim do dia e exibir todos os appointments
-     * ini 2020-02-06 00:00:00
-     * fim 2020-02-06 23:59:59
-     *
-     */
     const { date } = req.query;
     const parseDate = parseISO(date);
 
@@ -34,6 +25,13 @@ class ScheduleController {
           [Op.between]: [startOfDay(parseDate), endOfDay(parseDate)],
         },
       },
+      include: [
+        {
+          model: User,
+          as: 'user',
+          attributes: ['name'],
+        },
+      ],
       order: ['date'],
     });
 
