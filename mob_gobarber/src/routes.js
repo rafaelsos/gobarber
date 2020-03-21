@@ -32,21 +32,29 @@ function Routes() {
               } else if (route.name === 'Meu Perfil') {
                 iconName = focused ? 'person' : 'person';
               }
-              // You can return any component that you like here!
-              return <Icon name={iconName} size={20} color={color} />;
+
+              return <Icon name={iconName} size={35} color={color} />;
             },
           })}
           tabBarOptions={{
             keyboardHidesTabBar: true,
             inactiveTintColor: 'rgba(255,255,255,0.6)',
             activeTintColor: '#fff',
+            tabStyle: {
+              height: 50,
+            },
             style: {
+              height: 80,
+              paddingTop: 10,
+              borderTopWidth: 0,
               backgroundColor: '#8d41a8',
             },
           }}
           headerMode="none">
-          <Tab.Screen name="Agendamentos" component={Dashboard} />
-          <Tab.Screen name="Meu Perfil" component={Profile} />
+          <>
+            <Tab.Screen name="Agendamentos" component={Dashboard} />
+            <Tab.Screen name="Meu Perfil" component={Profile} />
+          </>
         </Tab.Navigator>
       ) : (
         <Stack.Navigator>

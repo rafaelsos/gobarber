@@ -12,7 +12,7 @@ export const Title = styled.Text`
   color: #fff;
   font-weight: bold;
   align-self: center;
-  margin-top: 30px;
+  margin-top: 10px;
 `;
 
 export const Form = styled.ScrollView.attrs({
@@ -38,5 +38,5 @@ export const LogoutButton = styled(Button)`
 export const Separator = styled.View`
   height: 1px;
   background: rgba(255, 255, 255, 0.2);
-  margin: 20px 0 30px;
+  margin: 10px 0 20px;
 `;
