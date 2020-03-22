@@ -1,5 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
+import { TouchableOpacity } from 'react-native';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -9,11 +11,64 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import SignIn from '~/pages/SignIn';
 import SignUp from '~/pages/SignUp';
+
+import SelectProvider from '~/pages/New/SelectProvider';
+import SelectDateTime from '~/pages/New/SelectDateTime';
+import Confirm from '~/pages/New/Confirm';
+
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const New = createStackNavigator();
+
+function NewScreen() {
+  return (
+    <New.Navigator
+      screenOptions={{
+        headerTransparent: true,
+        headerTintColor: '#fff',
+        headerLeftContainerStyle: {
+          marginLeft: 20,
+        },
+      }}>
+      <New.Screen
+        name="SelectProvider"
+        component={SelectProvider}
+        options={({ navigation }) => ({
+          title: 'Selecione o prestador',
+          headerTitleAlign: 'center',
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Agendamentos');
+              }}>
+              <Icon name="chevron-left" size={20} color="#fff" />
+            </TouchableOpacity>
+          ),
+        })}
+      />
+      <New.Screen
+        name="SelectDateTime"
+        component={SelectDateTime}
+        options={({ navigation }) => ({
+          title: 'Selecione o horário',
+          headerTitleAlign: 'center',
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.goBack();
+              }}>
+              <Icon name="chevron-left" size={20} color="#fff" />
+            </TouchableOpacity>
+          ),
+        })}
+      />
+      <New.Screen name="Confirm" component={Confirm} />
+    </New.Navigator>
+  );
+}
 
 function Routes() {
   const signed = useSelector(state => state.auth.signed);
@@ -53,6 +108,21 @@ function Routes() {
           headerMode="none">
           <>
             <Tab.Screen name="Agendamentos" component={Dashboard} />
+            <Tab.Screen
+              name="NewScreen"
+              component={NewScreen}
+              options={{
+                tabBarVisible: false,
+                tabBarLabel: 'Agendar',
+                tabBarIcon: () => (
+                  <Icon
+                    name="add-circle-outline"
+                    color="rgba(255, 255, 255, 0.6)"
+                    size={25}
+                  />
+                ),
+              }}
+            />
             <Tab.Screen name="Meu Perfil" component={Profile} />
           </>
         </Tab.Navigator>
