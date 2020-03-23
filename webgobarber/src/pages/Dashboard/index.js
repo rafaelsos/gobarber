@@ -18,7 +18,7 @@ import api from '~/services/api';
 
 import { Container, Time } from './styles';
 
-const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 
 export default function Dashboard() {
   const [schedule, setSchedule] = useState([]);
