@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import PropTypes from 'prop-types';
 import api from '~/services/api';
 
 import Background from '~/components/Background';
@@ -44,3 +44,8 @@ export default function SelectProvider({ navigation }) {
     </Background>
   );
 }
+
+SelectProvider.propTypes = {
+  navigation: PropTypes.oneOfType([PropTypes.object, PropTypes.element])
+    .isRequired,
+};

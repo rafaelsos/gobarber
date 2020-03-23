@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  margin-bottom: 15px;
-  padding: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
   border-radius: 4px;
   background: #fff;
 

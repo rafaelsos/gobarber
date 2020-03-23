@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { DatePickerIOS } from 'react-native';
 import { format } from 'date-fns';
 import pt from 'date-fns/locale/pt';
@@ -37,3 +38,9 @@ export default function DateInput({ date, onChange }) {
     </Container>
   );
 }
+
+DateInput.propTypes = {
+  onChange: PropTypes.oneOfType([PropTypes.object, PropTypes.element])
+    .isRequired,
+  date: PropTypes.oneOfType([PropTypes.object, PropTypes.element]).isRequired,
+};

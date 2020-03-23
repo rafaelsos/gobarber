@@ -65,7 +65,22 @@ function NewScreen() {
           ),
         })}
       />
-      <New.Screen name="Confirm" component={Confirm} />
+      <New.Screen
+        name="Confirm"
+        component={Confirm}
+        options={({ navigation }) => ({
+          title: 'Confirmar agendamento',
+          headerTitleAlign: 'center',
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.goBack();
+              }}>
+              <Icon name="chevron-left" size={20} color="#fff" />
+            </TouchableOpacity>
+          ),
+        })}
+      />
     </New.Navigator>
   );
 }
@@ -104,14 +119,14 @@ function Routes() {
               borderTopWidth: 0,
               backgroundColor: '#8d41a8',
             },
-          }}
-          headerMode="none">
+          }}>
           <>
             <Tab.Screen name="Agendamentos" component={Dashboard} />
             <Tab.Screen
               name="NewScreen"
               component={NewScreen}
               options={{
+                unmountOnBlur: true,
                 tabBarVisible: false,
                 tabBarLabel: 'Agendar',
                 tabBarIcon: () => (
@@ -127,7 +142,7 @@ function Routes() {
           </>
         </Tab.Navigator>
       ) : (
-        <Stack.Navigator>
+        <Stack.Navigator headerMode="none">
           <Stack.Screen name="SignIn" component={SignIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
         </Stack.Navigator>
