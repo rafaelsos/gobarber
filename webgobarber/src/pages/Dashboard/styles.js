@@ -32,16 +32,17 @@ export const Time = styled.li`
   padding: 20px;
   border-radius: 4px;
   background:  ${props => (props.past ? darken(0.1, '#FFF') : '#FFF')};
-  /* opacity: ${props => (props.past ? 0.5 : 1)}; */
+    /* opacity: ${props => (props.past ? 0.5 : 1)}; */
   strong {
     display: block;
     color: ${props => (props.available ? '#999' : '#7159c1')};
     font-size: 20px;
-    font-weight: normal;
+    font-weight: bold;
   }
   span {
     display: block;
     margin-top: 3px;
     color: ${props => (props.available ? '#999' : '#666')};
+    font-weight: ${props => (props.available ? 'normal' : 'bold')};
   }
 `;
