@@ -5,7 +5,7 @@ import axios from 'axios';
 // se for dispositivo usar a ip da rede
 
 const api = axios.create({
-  baseURL: 'http://192.168.0.2:3333',
+  baseURL: 'http://192.168.0.3:3333',
 });
 
 export default api;
